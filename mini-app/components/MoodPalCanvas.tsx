@@ -105,8 +105,10 @@ const translations = {
   },
 };
 
-function t(lang: string, key: string) {
-  return translations[lang]?.[key] ?? translations.en[key];
+function t(lang: string, key: string): string {
+  const langObj = translations[lang as keyof typeof translations];
+  const keyObj = langObj?.[key as keyof typeof langObj];
+  return keyObj ?? translations.en[key as keyof typeof translations.en];
 }
 
 export default function MoodPalCanvas() {
