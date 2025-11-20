@@ -1,3 +1,3 @@
-export const title = "Mini App Factory App";
-export const description = "This app was created by the Mini App Factory!";
+export const title = "MoodPal – Mood to Chibi Generator";
+export const description = "Generate a chibi avatar based on your mood with MoodPal.";
 export const url = process.env.NEXT_PUBLIC_URL;
