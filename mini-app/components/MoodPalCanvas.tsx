@@ -123,7 +123,7 @@ export default function MoodPalCanvas() {
   useEffect(() => {
     const userLang = navigator.language.slice(0, 2);
     const langKey = userLang as keyof typeof translations;
-    setLang(translations[langKey] ? userLang : "en");
+    setLang((translations[langKey] as any) ? userLang : "en");
     const storedStreak = localStorage.getItem("moodpal_streak");
     const storedDate = localStorage.getItem("moodpal_last");
     if (storedStreak && storedDate) {
@@ -160,103 +160,148 @@ export default function MoodPalCanvas() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    canvas.width = 400;
-    canvas.height = 400;
+    canvas.width = 300;
+    canvas.height = 300;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const drawChibi = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
       // head
-      ctx.fillStyle = "#fff";
+      ctx.fillStyle = "#FFDAB9";
       ctx.beginPath();
-      ctx.arc(canvas.width / 2, canvas.height / 2, 80, 0, Math.PI * 2);
+      ctx.arc(centerX, centerY, 80, 0, Math.PI * 2);
       ctx.fill();
       // hair
-      ctx.fillStyle = "#8b4513";
-      ctx.beginPath();
-      ctx.moveTo(canvas.width / 2 - 80, canvas.height / 2 - 80);
-      ctx.lineTo(canvas.width / 2 + 80, canvas.height / 2 - 80);
-      ctx.lineTo(canvas.width / 2, canvas.height / 2 - 120);
-      ctx.closePath();
-      ctx.fill();
-      // eyes
-      const eyeColor = mood === "love" ? "#ff69b4" : mood === "chaos" ? "#ffd700" : mood === "sad" ? "#1e90ff" : "#ff4500";
-      ctx.fillStyle = eyeColor;
-      ctx.beginPath();
-      ctx.arc(canvas.width / 2 - 30, canvas.height / 2 - 20, 20, 0, Math.PI * 2);
-      ctx.arc(canvas.width / 2 + 30, canvas.height / 2 - 20, 20, 0, Math.PI * 2);
-      ctx.fill();
-      // special eye shapes
-      if (mood === "love") {
-        ctx.fillStyle = "#ff1493";
+      if (mood === "chaos") {
+        // spikes
+        for (let i = 0; i < 12; i++) {
+          const angle = Math.PI / 6 * i - Math.PI / 2;
+          const x1 = centerX + Math.cos(angle) * 80;
+          const y1 = centerY + Math.sin(angle) * 80;
+          const x2 = centerX + Math.cos(angle) * 90;
+          const y2 = centerY + Math.sin(angle) * 90;
+          ctx.fillStyle = "#8B4513";
+          ctx.beginPath();
+          ctx.moveTo(centerX, centerY - 80);
+          ctx.lineTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.closePath();
+          ctx.fill();
+        }
+      } else {
+        ctx.fillStyle = "#8B4513";
         ctx.beginPath();
-        ctx.arc(canvas.width / 2 - 30, canvas.height / 2 - 20, 10, 0, Math.PI * 2);
-        ctx.arc(canvas.width / 2 + 30, canvas.height / 2 - 20, 10, 0, Math.PI * 2);
-        ctx.fill();
-      } else if (mood === "chaos") {
-        ctx.strokeStyle = "#ffd700";
-        ctx.lineWidth = 4;
-        ctx.beginPath();
-        ctx.moveTo(canvas.width / 2 - 30, canvas.height / 2 - 20);
-        ctx.lineTo(canvas.width / 2 - 30, canvas.height / 2 - 40);
-        ctx.moveTo(canvas.width / 2 + 30, canvas.height / 2 - 20);
-        ctx.lineTo(canvas.width / 2 + 30, canvas.height / 2 - 40);
-        ctx.stroke();
-      } else if (mood === "sad") {
-        ctx.fillStyle = "#1e90ff";
-        ctx.beginPath();
-        ctx.arc(canvas.width / 2 - 30, canvas.height / 2 - 20, 10, 0, Math.PI);
-        ctx.arc(canvas.width / 2 + 30, canvas.height / 2 - 20, 10, 0, Math.PI);
-        ctx.fill();
-      } else if (mood === "angry") {
-        ctx.fillStyle = "#ff4500";
-        ctx.beginPath();
-        ctx.moveTo(canvas.width / 2 - 30, canvas.height / 2 - 20);
-        ctx.lineTo(canvas.width / 2 - 20, canvas.height / 2 - 10);
-        ctx.lineTo(canvas.width / 2 - 30, canvas.height / 2);
-        ctx.closePath();
-        ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(canvas.width / 2 + 30, canvas.height / 2 - 20);
-        ctx.lineTo(canvas.width / 2 + 20, canvas.height / 2 - 10);
-        ctx.lineTo(canvas.width / 2 + 30, canvas.height / 2);
+        ctx.moveTo(centerX - 80, centerY - 80);
+        ctx.lineTo(centerX + 80, centerY - 80);
+        ctx.lineTo(centerX, centerY - 120);
         ctx.closePath();
         ctx.fill();
       }
+      // eyes
+      const eyeRadius = 20 + Math.floor(Math.random() * 8 - 4);
+      const eyeY = centerY - 20;
+      const eyeXOffset = 30;
+      const eyeColor =
+        mood === "love"
+          ? "#ff69b4"
+          : mood === "chaos"
+          ? "#ffd700"
+          : mood === "sad"
+          ? "#1e90ff"
+          : mood === "happy"
+          ? "#ffd700"
+          : "#808080";
+      ctx.fillStyle = eyeColor;
+      ctx.beginPath();
+      ctx.arc(centerX - eyeXOffset, eyeY, eyeRadius, 0, Math.PI * 2);
+      ctx.arc(centerX + eyeXOffset, eyeY, eyeRadius, 0, Math.PI * 2);
+      ctx.fill();
+      // pupils / special shapes
+      if (mood === "love") {
+        ctx.fillStyle = "#ff1493";
+        ctx.beginPath();
+        ctx.arc(centerX - eyeXOffset, eyeY, eyeRadius / 2, 0, Math.PI * 2);
+        ctx.arc(centerX + eyeXOffset, eyeY, eyeRadius / 2, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (mood === "chaos") {
+        ctx.fillStyle = "#ffd700";
+        ctx.beginPath();
+        ctx.arc(centerX - eyeXOffset, eyeY, eyeRadius / 2, 0, Math.PI * 2);
+        ctx.arc(centerX + eyeXOffset, eyeY, eyeRadius / 2, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (mood === "sad") {
+        ctx.fillStyle = "#1e90ff";
+        ctx.beginPath();
+        ctx.arc(centerX - eyeXOffset, eyeY, eyeRadius / 2, 0, Math.PI);
+        ctx.arc(centerX + eyeXOffset, eyeY, eyeRadius / 2, 0, Math.PI);
+        ctx.fill();
+      } else if (mood === "happy") {
+        ctx.fillStyle = "#ffd700";
+        ctx.beginPath();
+        ctx.arc(centerX - eyeXOffset, eyeY, eyeRadius / 2, 0, Math.PI * 2);
+        ctx.arc(centerX + eyeXOffset, eyeY, eyeRadius / 2, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillStyle = "#808080";
+        ctx.beginPath();
+        ctx.arc(centerX - eyeXOffset, eyeY, eyeRadius / 2, 0, Math.PI * 2);
+        ctx.arc(centerX + eyeXOffset, eyeY, eyeRadius / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      // mouth
+      ctx.strokeStyle = "#000";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      if (mood === "love") {
+        ctx.arc(centerX, centerY + 20, 20, 0, Math.PI, false);
+      } else if (mood === "chaos") {
+        ctx.moveTo(centerX - 20, centerY + 20);
+        ctx.lineTo(centerX + 20, centerY + 20);
+      } else if (mood === "sad") {
+        ctx.arc(centerX, centerY + 20, 20, Math.PI, 0, true);
+      } else if (mood === "happy") {
+        ctx.arc(centerX, centerY + 20, 20, 0, Math.PI, false);
+      } else {
+        ctx.moveTo(centerX - 20, centerY + 20);
+        ctx.lineTo(centerX + 20, centerY + 20);
+      }
+      ctx.stroke();
       // body
       ctx.fillStyle = "#add8e6";
-      ctx.beginPath();
-      ctx.rect(canvas.width / 2 - 30, canvas.height / 2 + 80, 60, 80);
-      ctx.fill();
+      ctx.fillRect(centerX - 30, centerY + 80, 60, 80);
       // badges
       if (streak >= 30) {
         ctx.fillStyle = "rgba(255,215,0,0.8)";
         ctx.beginPath();
-        ctx.arc(canvas.width / 2, canvas.height / 2 - 120, 30, 0, Math.PI * 2);
+        ctx.arc(centerX, centerY - 120, 30, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = "#000";
         ctx.font = "20px Arial";
         ctx.textAlign = "center";
-        ctx.fillText("Eternal Pal", canvas.width / 2, canvas.height / 2 - 120);
+        ctx.fillText("Eternal Pal", centerX, centerY - 120);
       } else if (streak >= 7) {
         ctx.fillStyle = "#fff";
         ctx.beginPath();
-        ctx.moveTo(canvas.width / 2 - 40, canvas.height / 2 - 100);
-        ctx.lineTo(canvas.width / 2 - 20, canvas.height / 2 - 140);
-        ctx.lineTo(canvas.width / 2, canvas.height / 2 - 100);
-        ctx.lineTo(canvas.width / 2 + 20, canvas.height / 2 - 140);
-        ctx.lineTo(canvas.width / 2 + 40, canvas.height / 2 - 100);
+        ctx.moveTo(centerX - 40, centerY - 100);
+        ctx.lineTo(centerX - 20, centerY - 140);
+        ctx.lineTo(centerX, centerY - 100);
+        ctx.lineTo(centerX + 20, centerY - 140);
+        ctx.lineTo(centerX + 40, centerY - 100);
         ctx.closePath();
         ctx.fill();
       } else if (streak >= 3) {
         ctx.fillStyle = "#ffd700";
         ctx.beginPath();
-        ctx.arc(canvas.width / 2, canvas.height / 2 - 120, 15, 0, Math.PI * 2);
+        ctx.arc(centerX, centerY - 120, 15, 0, Math.PI * 2);
         ctx.fill();
       }
     };
 
-    drawChibi();
+    if (generated) {
+      drawChibi();
+    }
 
     const blink = () => {
       ctx.globalAlpha = 0.2;
@@ -264,12 +309,12 @@ export default function MoodPalCanvas() {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       setTimeout(() => {
         ctx.globalAlpha = 1;
-        drawChibi();
+        if (generated) drawChibi();
       }, 200);
     };
     const blinkInterval = setInterval(blink, 3500);
     return () => clearInterval(blinkInterval);
-  }, [mood, streak]);
+  }, [mood, streak, generated]);
 
   const handleSummon = () => {
     const text = inputRef.current?.value.toLowerCase() ?? "";
