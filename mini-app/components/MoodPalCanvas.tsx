@@ -331,14 +331,12 @@ export default function MoodPalCanvas() {
     if (!canvas) return;
     const link = document.createElement("a");
     link.download = "moodpal.png";
-    link.href = canvas.toDataURL();
+    link.href = canvas.toDataURL("image/png");
     link.click();
   };
 
   const handleCast = () => {
-    const text = inputRef.current?.value ?? "";
-    const castText = `${t(lang, "day")} ${streak} – ${t(lang, "feeling")} ${text} #MoodPal`;
-    // simulate Farcaster cast
+    const castText = `${t(lang, "day")} ${streak} – ${t(lang, "feeling")} ${mood} #MoodPal`;
     alert(`Casted: ${castText}`);
   };
 
