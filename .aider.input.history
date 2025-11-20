@@ -134,3 +134,81 @@
 +Keep ALL v2 features: full chibi drawing (eyes/body/colors/animations), streaks/badges, calendar, multilingual (10 langs), 3 buttons (download/cast/gift).
 +
 +Rebuild and deploy fixed version now. No other changes.
+
+# 2025-11-20 21:56:19.906762
++EMERGENCY FIX MoodPal v2 build + drawing bug:
++
++Current app shows broken chibi (static triangle hair, blue square body, pink eyes) that doesn't change with mood, and displays before input. Multilingual works (French OK), streaks/buttons visible but incomplete.
++
++Root cause: Canvas drawing code in MoodPalCanvas.tsx is incomplete/buggy. No mood parsing for dynamic traits, no RNG for variants, no full body/animations.
++
++COMPLETE REWRITE of canvas JS only (keep all UI: streaks, calendar "Jour 1" green dot, multilingual auto EN/FR/ES/PT/DE/JA/KO/ZH/TR/AR, 3 buttons with simu cast/gift):
++
++In generateChibi() function:
++1. Parse mood text (lowerCase): 
++   - If includes "love/amour/amore" → heart eyes (pink pupils), blush cheeks, soft pink neon palette
++   - "chaos/kaos" → swirl eyes (yellow spirals), messy hair spikes, orange sparks animation
++   - "sad/triste/melancholy" → teary eyes (blue droops), downturn mouth, purple aura fade
++   - "happy/joyeux/heureux" → star eyes (gold sparkles), big smile, yellow glow
++   - Default: round eyes (neutral gray), simple mouth, earth tones
++   - Add random RNG: Math.random() for eye size (+/-20%), accessory (crown/wings/halo based on streak: 3d=crown,7d=wings,30d=halo)
++
++2. Draw FULL chibi on 300x300 canvas (transparent BG):
++   - Round head (ctx.arc 100,100,r=80, skin #FFDAB9)
++   - Big eyes (2 circles r=20 at 70/130 y=80, fill by mood color, pupils by shape)
++   - Mouth (arc or line by mood)
++   - Hair (triangle or spikes by mood)
++   - Tiny body (rect 100,180,w=60,h=80, color shift neon)
++   - Streak badges: draw crown/wings/halo on head if streak >=3/7/30
++   - Eye-blink: CSS @keyframes every 3s (scale y 0.1 on eyes)
++
++3. Download PNG: canvas.toDataURL('image/png') → link.download
++4. Cast simu: alert("Day [streak] – Feeling [mood] 🧚 #MoodPal")
++5. Gift: prompt("Wallet address?") → alert("Sent to [addr]!")
++
++Fix TS error from logs: In translations access, use const langKey = (userLang as keyof typeof translations) || 'en'; setLang(translations[langKey]);
++
++If crypto warning: Add to build script "NODE_OPTIONS=--openssl-legacy-provider next build"
++
++Use vanilla JS in canvas (no TS strict, fallback any if needed). Test with "flottant et amoureux" → heart chibi pink.
++
++Rebuild/deploy fixed v2 now. No other changes.
+
+# 2025-11-20 21:56:19.907952
++EMERGENCY FIX MoodPal v2 build + drawing bug:
++
++Current app shows broken chibi (static triangle hair, blue square body, pink eyes) that doesn't change with mood, and displays before input. Multilingual works (French OK), streaks/buttons visible but incomplete.
++
++Root cause: Canvas drawing code in MoodPalCanvas.tsx is incomplete/buggy. No mood parsing for dynamic traits, no RNG for variants, no full body/animations.
++
++COMPLETE REWRITE of canvas JS only (keep all UI: streaks, calendar "Jour 1" green dot, multilingual auto EN/FR/ES/PT/DE/JA/KO/ZH/TR/AR, 3 buttons with simu cast/gift):
++
++In generateChibi() function:
++1. Parse mood text (lowerCase): 
++   - If includes "love/amour/amore" → heart eyes (pink pupils), blush cheeks, soft pink neon palette
++   - "chaos/kaos" → swirl eyes (yellow spirals), messy hair spikes, orange sparks animation
++   - "sad/triste/melancholy" → teary eyes (blue droops), downturn mouth, purple aura fade
++   - "happy/joyeux/heureux" → star eyes (gold sparkles), big smile, yellow glow
++   - Default: round eyes (neutral gray), simple mouth, earth tones
++   - Add random RNG: Math.random() for eye size (+/-20%), accessory (crown/wings/halo based on streak: 3d=crown,7d=wings,30d=halo)
++
++2. Draw FULL chibi on 300x300 canvas (transparent BG):
++   - Round head (ctx.arc 100,100,r=80, skin #FFDAB9)
++   - Big eyes (2 circles r=20 at 70/130 y=80, fill by mood color, pupils by shape)
++   - Mouth (arc or line by mood)
++   - Hair (triangle or spikes by mood)
++   - Tiny body (rect 100,180,w=60,h=80, color shift neon)
++   - Streak badges: draw crown/wings/halo on head if streak >=3/7/30
++   - Eye-blink: CSS @keyframes every 3s (scale y 0.1 on eyes)
++
++3. Download PNG: canvas.toDataURL('image/png') → link.download
++4. Cast simu: alert("Day [streak] – Feeling [mood] 🧚 #MoodPal")
++5. Gift: prompt("Wallet address?") → alert("Sent to [addr]!")
++
++Fix TS error from logs: In translations access, use const langKey = (userLang as keyof typeof translations) || 'en'; setLang(translations[langKey]);
++
++If crypto warning: Add to build script "NODE_OPTIONS=--openssl-legacy-provider next build"
++
++Use vanilla JS in canvas (no TS strict, fallback any if needed). Test with "flottant et amoureux" → heart chibi pink.
++
++Rebuild/deploy fixed v2 now. No other changes.
