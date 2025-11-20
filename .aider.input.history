@@ -212,3 +212,59 @@
 +Use vanilla JS in canvas (no TS strict, fallback any if needed). Test with "flottant et amoureux" → heart chibi pink.
 +
 +Rebuild/deploy fixed v2 now. No other changes.
+
+# 2025-11-20 22:18:10.566391
++FORCE BUILD MoodPal v2 – ignore ESLint strict rules
++
++Current build fails on:
++- @typescript-eslint/no-explicit-any (line 125 in MoodPalCanvas.tsx)
++- jsx-a11y/role-supports-aria-props warning treated as error
++
++DO THIS NOW:
++1. In eslint.config.mjs or .eslintrc, add these overrides to disable the blocking rules:
++   rules: {
++     "@typescript-eslint/no-explicit-any": "off",
++     "jsx-a11y/role-supports-aria-props": "off",
++     "@next/next/no-img-element": "off"  // au cas où
++   }
++
++2. OR even simpler: completely disable ESLint during build by adding to next.config.mjs:
++   eslint: { ignoreDuringBuilds: true },
++   typescript: { ignoreBuildErrors: true },
++
++3. Keep ALL features (full chibi drawing with mood parsing, blink animation, streaks + badges, multilingual FR/EN/..., 3 buttons, download PNG, transparent background)
++
++4. If crypto error appears: NODE_OPTIONS="--openssl-legacy-provider"
++
++FORCE BUILD AND DEPLOY RIGHT NOW even if there are lint warnings.  
++This is a mini-app, perfection is not required, functionality is.
++
++Deploy the working version immediately.
+
+# 2025-11-20 22:18:10.566786
++FORCE BUILD MoodPal v2 – ignore ESLint strict rules
++
++Current build fails on:
++- @typescript-eslint/no-explicit-any (line 125 in MoodPalCanvas.tsx)
++- jsx-a11y/role-supports-aria-props warning treated as error
++
++DO THIS NOW:
++1. In eslint.config.mjs or .eslintrc, add these overrides to disable the blocking rules:
++   rules: {
++     "@typescript-eslint/no-explicit-any": "off",
++     "jsx-a11y/role-supports-aria-props": "off",
++     "@next/next/no-img-element": "off"  // au cas où
++   }
++
++2. OR even simpler: completely disable ESLint during build by adding to next.config.mjs:
++   eslint: { ignoreDuringBuilds: true },
++   typescript: { ignoreBuildErrors: true },
++
++3. Keep ALL features (full chibi drawing with mood parsing, blink animation, streaks + badges, multilingual FR/EN/..., 3 buttons, download PNG, transparent background)
++
++4. If crypto error appears: NODE_OPTIONS="--openssl-legacy-provider"
++
++FORCE BUILD AND DEPLOY RIGHT NOW even if there are lint warnings.  
++This is a mini-app, perfection is not required, functionality is.
++
++Deploy the working version immediately.
