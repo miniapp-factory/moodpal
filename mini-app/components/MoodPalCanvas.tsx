@@ -118,10 +118,12 @@ export default function MoodPalCanvas() {
   const [mood, setMood] = useState("love");
   const [streak, setStreak] = useState(0);
   const [generated, setGenerated] = useState(false);
+  const [lastDate, setLastDate] = useState<string | null>(null);
 
   useEffect(() => {
     const userLang = navigator.language.slice(0, 2);
-    setLang(translations[userLang] ? userLang : "en");
+    const langKey = userLang as keyof typeof translations;
+    setLang(translations[langKey] ? userLang : "en");
     const storedStreak = localStorage.getItem("moodpal_streak");
     const storedDate = localStorage.getItem("moodpal_last");
     if (storedStreak && storedDate) {
