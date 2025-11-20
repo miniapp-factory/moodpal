@@ -94,3 +94,43 @@
 +Use only HTML + vanilla JavaScript + canvas. No external libraries, no wallet connect yet.
 +
 +Deploy the fixed and upgraded version immediately.
+
+# 2025-11-20 21:39:06.228724
++FIX BUILD ERROR in MoodPal v2 immediately:
++
++From output logs: TypeScript error in ./components/MoodPalCanvas.tsx:124:13
++"Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ en: {...}, fr: {...}, ... }'."
++
++Cause: translations[userLang] where userLang is string, but object has no index signature.
++
++Quick fixes in MoodPalCanvas.tsx:
++1. Change line 124 to: const langKey = userLang as keyof typeof translations; setLang(translations[langKey] || translations.en);
++   (Or add index signature to translations: { [key: string]: typeof translations.en; } & typeof translations)
++
++2. Ensure all translations access use safe indexing (e.g., translations[langKey as keyof typeof translations]?.placeholder || translations.en.placeholder)
++
++3. If Node crypto warning appears, add to package.json scripts/build: "NODE_OPTIONS=--openssl-legacy-provider next build"
++
++Keep ALL v2 features: full chibi drawing (eyes/body/colors/animations), streaks/badges, calendar, multilingual (10 langs), 3 buttons (download/cast/gift).
++
++Rebuild and deploy fixed version now. No other changes.
+
+# 2025-11-20 21:39:06.229788
++FIX BUILD ERROR in MoodPal v2 immediately:
++
++From output logs: TypeScript error in ./components/MoodPalCanvas.tsx:124:13
++"Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ en: {...}, fr: {...}, ... }'."
++
++Cause: translations[userLang] where userLang is string, but object has no index signature.
++
++Quick fixes in MoodPalCanvas.tsx:
++1. Change line 124 to: const langKey = userLang as keyof typeof translations; setLang(translations[langKey] || translations.en);
++   (Or add index signature to translations: { [key: string]: typeof translations.en; } & typeof translations)
++
++2. Ensure all translations access use safe indexing (e.g., translations[langKey as keyof typeof translations]?.placeholder || translations.en.placeholder)
++
++3. If Node crypto warning appears, add to package.json scripts/build: "NODE_OPTIONS=--openssl-legacy-provider next build"
++
++Keep ALL v2 features: full chibi drawing (eyes/body/colors/animations), streaks/badges, calendar, multilingual (10 langs), 3 buttons (download/cast/gift).
++
++Rebuild and deploy fixed version now. No other changes.
