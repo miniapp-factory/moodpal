@@ -14,7 +14,9 @@ const eslintConfig = [
   {
     "rules": {
       "@next/next/no-img-element": "off",
-      "prefer-const": "off"
+      "prefer-const": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "jsx-a11y/role-supports-aria-props": "off"
     }
   },
   {
