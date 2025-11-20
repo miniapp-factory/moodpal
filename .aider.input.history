@@ -36,3 +36,61 @@
 +```
 +
 +Generate an app logo and update the app metadata title and description.
+
+# 2025-11-20 21:23:25.353156
++URGENT FIX + UPGRADE MoodPal to full v2 right now:
++
++Current version only draws two pink circles → replace the entire canvas code with a COMPLETE chibi generator that works perfectly.
++
++Must include:
++• Full cute chibi character (big expressive eyes, round head, tiny body, hair, accessories)
++• Mood-based style & colors (examples: love → heart eyes + pink neon, chaos → swirl eyes + yellow sparks, sad → teary eyes + blue aura, angry → fire eyes + red, etc.)
++• Automatic eye-blink animation every 3–4 seconds
++• 100 % transparent background
++• Works with ANY language (English, French, Spanish, Japanese, emojis…)
++
++Add these features:
++1. Daily streak counter “Day 12” (using localStorage)
++2. Streak badges drawn on the chibi:
++   - 3 days → tiny golden crown
++   - 7 days → angel wings
++   - 30 days → legendary halo + “Eternal Pal” text
++3. Small 365-day contribution calendar below (green squares for active days)
++4. Auto-detect browser language and translate placeholder + buttons (support at least English, French, Spanish, Portuguese, German, Japanese, Korean, Chinese, Turkish, Arabic)
++5. Three buttons after generation:
++   • Download as PFP (transparent PNG – must work)
++   • Cast on Farcaster (auto-fill “Day 12 – Feeling [mood] #MoodPal” + image)
++   • Gift a MoodPal (prompt for wallet address → simu “sent!”)
++
++Use only HTML + vanilla JavaScript + canvas. No external libraries, no wallet connect yet.
++
++Deploy the fixed and upgraded version immediately.
+
+# 2025-11-20 21:23:25.354669
++URGENT FIX + UPGRADE MoodPal to full v2 right now:
++
++Current version only draws two pink circles → replace the entire canvas code with a COMPLETE chibi generator that works perfectly.
++
++Must include:
++• Full cute chibi character (big expressive eyes, round head, tiny body, hair, accessories)
++• Mood-based style & colors (examples: love → heart eyes + pink neon, chaos → swirl eyes + yellow sparks, sad → teary eyes + blue aura, angry → fire eyes + red, etc.)
++• Automatic eye-blink animation every 3–4 seconds
++• 100 % transparent background
++• Works with ANY language (English, French, Spanish, Japanese, emojis…)
++
++Add these features:
++1. Daily streak counter “Day 12” (using localStorage)
++2. Streak badges drawn on the chibi:
++   - 3 days → tiny golden crown
++   - 7 days → angel wings
++   - 30 days → legendary halo + “Eternal Pal” text
++3. Small 365-day contribution calendar below (green squares for active days)
++4. Auto-detect browser language and translate placeholder + buttons (support at least English, French, Spanish, Portuguese, German, Japanese, Korean, Chinese, Turkish, Arabic)
++5. Three buttons after generation:
++   • Download as PFP (transparent PNG – must work)
++   • Cast on Farcaster (auto-fill “Day 12 – Feeling [mood] #MoodPal” + image)
++   • Gift a MoodPal (prompt for wallet address → simu “sent!”)
++
++Use only HTML + vanilla JavaScript + canvas. No external libraries, no wallet connect yet.
++
++Deploy the fixed and upgraded version immediately.
