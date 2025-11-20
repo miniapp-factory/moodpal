@@ -118,7 +118,6 @@ export default function MoodPalCanvas() {
   const [mood, setMood] = useState("love");
   const [streak, setStreak] = useState(0);
   const [generated, setGenerated] = useState(false);
-  const [lastDate, setLastDate] = useState<string | null>(null);
 
   useEffect(() => {
     const userLang = navigator.language.slice(0, 2);
@@ -130,7 +129,6 @@ export default function MoodPalCanvas() {
       const today = new Date().toDateString();
       if (today === storedDate) {
         setStreak(parseInt(storedStreak));
-        setLastDate(storedDate);
       } else {
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
@@ -138,7 +136,6 @@ export default function MoodPalCanvas() {
           setStreak(parseInt(storedStreak) + 1);
           localStorage.setItem("moodpal_streak", (parseInt(storedStreak) + 1).toString());
           localStorage.setItem("moodpal_last", today);
-          setLastDate(today);
         } else {
           setStreak(1);
           localStorage.setItem("moodpal_streak", "1");
