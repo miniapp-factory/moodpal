@@ -118,6 +118,7 @@ export default function MoodPalCanvas() {
   const [mood, setMood] = useState("love");
   const [streak, setStreak] = useState(0);
   const [generated, setGenerated] = useState(false);
+  const [lastDate, setLastDate] = useState<string | null>(null);
 
   useEffect(() => {
     const userLang = navigator.language.slice(0, 2);
