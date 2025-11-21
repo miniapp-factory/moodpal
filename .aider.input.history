@@ -456,3 +456,101 @@
 
 # 2025-11-20 22:45:40.345121
 +apply changes
+
+# 2025-11-21 00:44:20.534589
++I Want to delete old version and Create Base Mini App "Runner Arena" – Endless Runner lofi chill (single HTML + vanilla JS + canvas + Web Audio, NO React/Next/TS/ESLint)
++
++Gameplay (3 lanes endless runner):
++- Tap left/right screen → change lane
++- Obstacles random (walls, holes, lasers) speed++
++- Collision = game over → score = distance
++- Coins spawn → collect for score ×2/×3
++
++Home screen:
++- Choose character (3 skins: Robot Neon, Cyber Ninja, Alien – simple shapes)
++- Choose 1 active boost (shop buy with points):
++  1. Speed Boost (+20% speed)
++  2. Agility (wider dodge window)
++  3. Shield (1 hit protection, cooldown 15s)
++  4. Jump (tap up to jump obstacles)
++  5. Magnet Coins
++  6. Slow Motion (3s)
++- Buttons: Play | Leaderboard | Shop | Achievements
++
++Achievements badges (10, localStorage):
++1. Débutant (500m) → +50 pts
++2. Sprinter (1000m) → +100 pts
++3. Sans Faute (1000m no hit) → +200 pts
++4. Boost Master (10 boosts used) → +150 pts
++5. Coin Hunter (500 coins) → +250 pts
++6. Daily Hero (5 daily challenges) → +300 pts
++7. Marathon (PB 5000m) → +500 pts
++8. Skin Collector (5 skins) → +200 pts
++9. Leader (top 3 leaderboard) → +400 pts
++10. Légende (all badges) → +1000 pts permanent
++
++Daily challenge on home (random each day, e.g. "1000m with Jump only")
++
++Lofi chill animated soundtrack (Web Audio API only, no files):
++- Infinite lofi pads (Am-F-C-G chords, long reverb, LFO filter breathing 0.2Hz)
++- Vinyl crackle + mellow 80 BPM beats
++- SFX: soft whoosh boost, mellow ping coin, sub bump jump, fade out game over
++- Mute toggle button
++
++Leaderboard local top 10 + points system + shop (all localStorage)
++
++Neon low-poly style, mobile-first, 60fps, <2s load
++
++Generate full single working HTML file and deploy now.
+
+# 2025-11-21 00:44:20.534953
++I Want to delete old version and Create Base Mini App "Runner Arena" – Endless Runner lofi chill (single HTML + vanilla JS + canvas + Web Audio, NO React/Next/TS/ESLint)
++
++Gameplay (3 lanes endless runner):
++- Tap left/right screen → change lane
++- Obstacles random (walls, holes, lasers) speed++
++- Collision = game over → score = distance
++- Coins spawn → collect for score ×2/×3
++
++Home screen:
++- Choose character (3 skins: Robot Neon, Cyber Ninja, Alien – simple shapes)
++- Choose 1 active boost (shop buy with points):
++  1. Speed Boost (+20% speed)
++  2. Agility (wider dodge window)
++  3. Shield (1 hit protection, cooldown 15s)
++  4. Jump (tap up to jump obstacles)
++  5. Magnet Coins
++  6. Slow Motion (3s)
++- Buttons: Play | Leaderboard | Shop | Achievements
++
++Achievements badges (10, localStorage):
++1. Débutant (500m) → +50 pts
++2. Sprinter (1000m) → +100 pts
++3. Sans Faute (1000m no hit) → +200 pts
++4. Boost Master (10 boosts used) → +150 pts
++5. Coin Hunter (500 coins) → +250 pts
++6. Daily Hero (5 daily challenges) → +300 pts
++7. Marathon (PB 5000m) → +500 pts
++8. Skin Collector (5 skins) → +200 pts
++9. Leader (top 3 leaderboard) → +400 pts
++10. Légende (all badges) → +1000 pts permanent
++
++Daily challenge on home (random each day, e.g. "1000m with Jump only")
++
++Lofi chill animated soundtrack (Web Audio API only, no files):
++- Infinite lofi pads (Am-F-C-G chords, long reverb, LFO filter breathing 0.2Hz)
++- Vinyl crackle + mellow 80 BPM beats
++- SFX: soft whoosh boost, mellow ping coin, sub bump jump, fade out game over
++- Mute toggle button
++
++Leaderboard local top 10 + points system + shop (all localStorage)
++
++Neon low-poly style, mobile-first, 60fps, <2s load
++
++Generate full single working HTML file and deploy now.
+
+# 2025-11-21 00:45:41.892061
++apply changes
+
+# 2025-11-21 00:45:41.893138
++apply changes
